@@ -52,6 +52,16 @@ public class _find__jsp extends com.caucho.jsp.JavaPage
 //    mSession.put("id", userSessionId);
 //    mSession.save();
 
+    //IP \ucc28\ub2e8
+    String[] allowedIpList = {"127.0.0.1", "125.129.123.211"};
+    String userIp = request.getRemoteAddr();
+    boolean allowed = false;
+//    if(!Site.checkIP(userIp, siteinfo.s("allowed_ip_list"))) m.redirect("/"); return;
+    for(String s : allowedIpList) {
+        if(userIp.equals(s)) allowed = true;
+    }
+    if(!allowed) {m.redirect("/"); return;}
+
     Page p = new Page();
     p.setRequest(request);
     p.setWriter(out);
@@ -62,8 +72,49 @@ public class _find__jsp extends com.caucho.jsp.JavaPage
 
 
       
+
+    boolean sendBlock = false;
+    boolean authBlock = false;
+
+    UserDao user = new UserDao();
+    MailDao mail = new MailDao();
+
+    //\ubc1c\uc1a1
+    if("send".equals(m.rs("mode"))) {
+        sendBlock = true;
+        //\uc81c\ud55c-3\ubd84
+//    int gapLimit = 3;
+//    int gapMinutes = !"".equals(m.getSession("EMAIL_SENDDATE")) ? Malgn.diffDate("I", m.getSession("EMAIL_SENDDATE"), sysNow) : 999;
+//    if(gapMinutes < gapLimit) {
+//        m.jsAlert(_message.get("alert.member.find.remain", new String[] {"gapMinutes=>" + gapMinutes, "remain=>" + (gapLimit - gapMinutes)})); return;
+//    }
+        DataSet uinfo = user.find("login_id = ? AND birth = ?", new Object[] {f.get("loginid"), f.get("birthday")});
+        if(!uinfo.next()) { m.jsError("\ud574\ub2f9 \ud68c\uc6d0\uc774 \uc874\uc7ac\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4."); return;}
+
+        String authCode = "" + Malgn.getRandInt(1000, 4);
+        mail.send(uinfo.s("email"), authCode);
+        m.setSession("AUTH_CODE", authCode);
+        m.setSession("EMAIL_SENDDATE", sysNow);
+        m.jsAlert("\uba54\uc77c\uc774 \ubc1c\uc1a1\ub418\uc5c8\uc2b5\ub2c8\ub2e4.");
+    }
+    else if("auth".equals(m.rs("mode"))) {
+        if(!f.get("auth_code").equals(m.getSession("AUTH_CODE"))) {
+            m.jsError("\uc778\uc99d\ubc88\ud638\uac00 \uc77c\uce58\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.");
+            return;
+        } else {
+            authBlock = true;
+        }
+    }
+
+    else if("change".equals(m.rs("mode"))) {
+        m.jsAlert("\ube44\ubc00\ubc88\ud638 \ubcc0\uacbd\uc5d0 \uc131\uacf5\ud588\uc2b5\ub2c8\ub2e4.");
+        m.redirect("login.jsp");
+    }
+
     p.setLayout("blank");
     p.setBody("main.find");
+    p.setVar("send_block", sendBlock);
+    p.setVar("auth_block", authBlock);
     p.display();
 
       out.write(_jsp_string0, 0, _jsp_string0.length);
@@ -140,9 +191,9 @@ public class _find__jsp extends com.caucho.jsp.JavaPage
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/find.jsp"), -8438931977547643205L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/find.jsp"), -8297060748343252935L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), 5066274978116153783L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), 5129796956540376339L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
   }
 

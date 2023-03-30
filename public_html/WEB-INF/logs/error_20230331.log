@@ -1,0 +1,4 @@
+[2023-03-31 08:16:50] at /myweb/login.jsp
+{Malgn.strToDate(1)} source: (source is blank or null)
+[2023-03-31 08:16:50] at /myweb/login.jsp
+{Malgn.diffDate} type:I, sdate:, edate:20230331081650 (date is blank or null)

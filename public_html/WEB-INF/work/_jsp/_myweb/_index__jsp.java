@@ -52,6 +52,16 @@ public class _index__jsp extends com.caucho.jsp.JavaPage
 //    mSession.put("id", userSessionId);
 //    mSession.save();
 
+    //IP \ucc28\ub2e8
+    String[] allowedIpList = {"127.0.0.1", "125.129.123.211"};
+    String userIp = request.getRemoteAddr();
+    boolean allowed = false;
+//    if(!Site.checkIP(userIp, siteinfo.s("allowed_ip_list"))) m.redirect("/"); return;
+    for(String s : allowedIpList) {
+        if(userIp.equals(s)) allowed = true;
+    }
+    if(!allowed) {m.redirect("/"); return;}
+
     Page p = new Page();
     p.setRequest(request);
     p.setWriter(out);
@@ -148,7 +158,7 @@ public class _index__jsp extends com.caucho.jsp.JavaPage
     com.caucho.vfs.Depend depend;
     depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/index.jsp"), -1283024279850584049L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), 5066274978116153783L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), 5129796956540376339L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
   }
 }

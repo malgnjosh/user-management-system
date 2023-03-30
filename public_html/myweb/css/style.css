@@ -15,8 +15,9 @@ a {text-decoration: none; color: inherit;}
 .login-area #login-box .ip-label {transition: all .5s; position:absolute; top: 9px; left: 75px; font-size: 21px;}
 .login-area #login-box .focus {top:-20px;}
 
-.find-pw .step1 {margin-top: 50px; }
-.find-pw .step2 {margin-top: 50px; display:none;}
+.find-pw .step1, .step2 {margin-top: 50px;}
+.find-pw .step3 {padding-top: 50px;}
+.find-pw .step2 h4 {margin-bottom: 20px;}
 
 .wrap { display: flex;}
 header {height: 100%; width: 200px; padding: 10px;}

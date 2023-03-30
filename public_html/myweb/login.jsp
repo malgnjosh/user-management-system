@@ -25,8 +25,8 @@
             else {
                 int failCnt = info.i("fail_cnt") + 1;
                 if(failCnt > 5) {
-                    mSession.put("blocked_time", sysNow);
-                    mSession.save();
+//                    mSession.put("blocked_time", sysNow);
+//                    mSession.save();
                     user.item("status", 2);
                     msg = "회원 상태 변경 실패";
                 }

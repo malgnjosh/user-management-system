@@ -1,11 +1,16 @@
 <div class="find-pw">
     <div class="step1">
         <form name="form1" method="post" onsubmit="submit();">
+            <input type="hidden" name="mode" value="send">
             <div class="mb-3">
-                <h4>회원가입 시 입력한 아이디와 생년월일을 입력해 주세요.</h4>
+                <!--@nif(send_block)-->
+                <h4>가입 시 입력한 아이디와 생년월일을 입력해 주세요.</h4>
+                <!--/nif(send_block)-->
                 <label for="loginid">
                     <input type="text" class="form-control form-control-lg" id="loginid" name="loginid" placeholder="아이디">
                 </label>
+            </div>
+            <div class="mb-3">
                 <label for="birthday">
                     <input type="text" class="form-control form-control-lg" id="birthday" name="birthday" placeholder="생년월일(예: 700101)">
                 </label>
@@ -15,12 +20,14 @@
             </div>
         </form>
     </div>
+    <!--@if(send_block)-->
     <div class="step2">
         <form name="form2" method="post">
+            <input type="hidden" name="mode" value="auth">
             <div class="mb-3">
                 <h4>메일로 발송된 4자리 인증코드를 입력해 주세요.</h4>
-                <label for="authcode">
-                    <input type="text" class="form-control form-control-lg" id="authcode" name="authcode" placeholder="인증코드">
+                <label for="auth_code">
+                    <input type="text" class="form-control form-control-lg" id="auth_code" name="auth_code" placeholder="인증코드">
                 </label>
             </div>
             <div class="btn-area">
@@ -28,9 +35,45 @@
             </div>
         </form>
     </div>
+    <!--/if(send_block)-->
+    <!--@if(auth_block)-->
+    <div class="step3">
+        <form name="form3" method="post">
+            <input type="hidden" name="mode" value="change">
+            <div class="mb-3">
+                <h4>새로운 비밀번호를 입력해주세요.</h4>
+                <label for="auth_code">
+                    <input type="password" class="form-control form-control-lg" id="new_pw" name="new_pw" placeholder="8자리 이상 영문자, 숫자">
+                </label>
+            </div>
+            <div class="btn-area">
+                <button type="submit" class="btn btn-lg btn-light" style="width:273px;">확인</button>
+            </div>
+        </form>
+    </div>
+    <!--/if(auth_block)-->
 </div>
+<!--@if(auth_block)-->
 <script>
-    function submit() {
+    $('.step1, .step2').css("display", "none");
+</script>
+<!--/if(auth_block)-->
+<script>
 
+    $(function() {
+        $('#loginid').focus(function() {
+            $('#loginid').parent().parent().find('h4').fadeOut()
+        })
+
+        $('#auth_code').focus(function() {
+            $('#auth_code').parent().parent().find('h4').fadeOut()
+        })
+        $('#new_pw').focus(function() {
+            $('#new_pw').parent().parent().find('h4').fadeOut()
+        })
+    })
+
+    function submit() {
+        document.forms['form1'].submit();
     }
 </script>
