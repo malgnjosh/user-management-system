@@ -1,0 +1,14 @@
+SMAP
+_logout__jsp.java
+JSP
+*S JSP
+*F
++ 1 init.jsp
+myweb/init.jsp
++ 2 logout.jsp
+myweb/logout.jsp
+*L
+1#1,27:37
+1#2,6:64
+6#2,2:70
+*E

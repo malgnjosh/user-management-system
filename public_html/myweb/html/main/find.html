@@ -1,0 +1,36 @@
+<div class="find-pw">
+    <div class="step1">
+        <form name="form1" method="post" onsubmit="submit();">
+            <div class="mb-3">
+                <h4>회원가입 시 입력한 아이디와 생년월일을 입력해 주세요.</h4>
+                <label for="loginid">
+                    <input type="text" class="form-control form-control-lg" id="loginid" name="loginid" placeholder="아이디">
+                </label>
+                <label for="birthday">
+                    <input type="text" class="form-control form-control-lg" id="birthday" name="birthday" placeholder="생년월일(예: 700101)">
+                </label>
+            </div>
+            <div class="btn-area">
+                <button type="submit" class="btn btn-lg btn-light" style="width:273px;">이메일 발송</button>
+            </div>
+        </form>
+    </div>
+    <div class="step2">
+        <form name="form2" method="post">
+            <div class="mb-3">
+                <h4>메일로 발송된 4자리 인증코드를 입력해 주세요.</h4>
+                <label for="authcode">
+                    <input type="text" class="form-control form-control-lg" id="authcode" name="authcode" placeholder="인증코드">
+                </label>
+            </div>
+            <div class="btn-area">
+                <button type="submit" class="btn btn-lg btn-light" style="width:273px;">확인</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    function submit() {
+
+    }
+</script>

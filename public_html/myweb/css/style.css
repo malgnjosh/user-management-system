@@ -1,0 +1,31 @@
+* { padding: 0; margin: 0; box-sizing: border-box; font-family: D2Coding, sans-serif; }
+ul, ol {list-style: none;}
+a {text-decoration: none; color: inherit;}
+
+#login-wrap { width:100%; height:1200px; text-align: center;}
+
+.logo { margin-top: 15px;}
+.login-area { margin: 80px auto ; background-color: #8B69BF; border-radius: 20px; width: 400px; height: 400px; }
+.login-area #login-box { padding-top: 50px;}
+.login-area #login-box .mb-3 { position:relative; margin-top: 30px;}
+.login-area #login-box .mb-3 + .mb-3 { margin-top: 10px;}
+.login-area #login-box .btn-area { margin-top: 50px;}
+.login-area #login-box button { margin-bottom: 10px;}
+.login-area #login-box label input::placeholder {padding-left: 60px;}
+.login-area #login-box .ip-label {transition: all .5s; position:absolute; top: 9px; left: 75px; font-size: 21px;}
+.login-area #login-box .focus {top:-20px;}
+
+.find-pw .step1 {margin-top: 50px; }
+.find-pw .step2 {margin-top: 50px; display:none;}
+
+.wrap { display: flex;}
+header {height: 100%; width: 200px; padding: 10px;}
+header div.logo {width: 100px; height:inherit;}
+header div.logo a img {width:100%; height:100%;}
+header div.btnArea { position: absolute; top: 70%; width:calc(100% - 100px); height:80px; margin-top: 50px;}
+header nav {width:200px;}
+header nav li:hover {background-color: #5d5dd5;}
+header nav li:hover a {color: white;}
+header nav li a { display:block;}
+
+.content { padding: 20px; }

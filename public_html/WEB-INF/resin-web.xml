@@ -1,0 +1,19 @@
+<web-app xmlns="http://caucho.com/ns/resin">
+  <!-- configures the default class loader -->
+  <class-loader>
+    <compiling-loader path="WEB-INF/classes" source="/home/jsl/src"/>
+    <library-loader path="WEB-INF/lib"/>
+ </class-loader>
+  <javac compiler="internal" args="-source 1.5 -target 1.5 -encoding UTF-8 -Xlint:unchecked -Xlint:-options"/>
+  <database>
+    <jndi-name>jdbc/jsl</jndi-name>
+    <driver type="com.mysql.jdbc.Driver">
+      <url>jdbc:mysql://localhost:3306/jsl?autoReconnect=true</url>
+      <user>jsl</user>
+      <password>jsl!@</password>
+     </driver>
+     <prepared-statement-cache-size>8</prepared-statement-cache-size>
+     <max-connections>4</max-connections>
+     <max-idle-time>30s</max-idle-time>
+  </database>
+</web-app>

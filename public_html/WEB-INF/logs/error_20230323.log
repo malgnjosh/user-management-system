@@ -1,0 +1,19 @@
+[2023-03-23 08:23:11] {Template.readFile} path:/home/jsl/public_html/html/layout/layout_main.html
+[2023-03-23 08:23:16] {Template.readFile} path:/home/jsl/public_html/html/layout/layout_main.html
+[2023-03-23 08:23:17] {Template.readFile} path:/home/jsl/public_html/html/layout/layout_main.html
+[2023-03-23 08:23:17] {Template.readFile} path:/home/jsl/public_html/html/layout/layout_main.html
+[2023-03-23 08:46:57] {Template.readFile} path:/home/jsl/public_html/myweb/html/layout/layout_blank.html
+[2023-03-23 17:47:19] at /myweb/login.jsp
+{DB.query} SELECT * FROM TB_USER WHERE id =  AND password =  => You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND password =' at line 1 (You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND password =' at line 1)
+[2023-03-23 17:47:35] at /myweb/login.jsp
+{DB.query} SELECT * FROM TB_USER WHERE id =  AND password =  => You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND password =' at line 1 (You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND password =' at line 1)
+[2023-03-23 17:47:42] at /myweb/login.jsp
+{DB.query} SELECT * FROM TB_USER WHERE id =  AND password =  => You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND password =' at line 1 (You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND password =' at line 1)
+[2023-03-23 17:48:17] at /myweb/login.jsp
+{DB.query} SELECT * FROM TB_USER WHERE login_id =  AND password =  => You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND password =' at line 1 (You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND password =' at line 1)
+[2023-03-23 17:48:25] at /myweb/login.jsp
+{DB.query} SELECT * FROM TB_USER WHERE login_id =  AND password =  => You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND password =' at line 1 (You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND password =' at line 1)
+[2023-03-23 17:48:48] at /myweb/login.jsp
+{DB.query} SELECT * FROM TB_USER WHERE login_id =  AND password =  => You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND password =' at line 1 (You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND password =' at line 1)
+[2023-03-23 17:49:16] at /myweb/login.jsp
+{DB.query} SELECT * FROM TB_USER WHERE login_id =  AND password =  => You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND password =' at line 1 (You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND password =' at line 1)

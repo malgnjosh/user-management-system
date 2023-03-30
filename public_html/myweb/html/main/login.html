@@ -1,0 +1,48 @@
+<div class="logo">
+    <img src="image/balgnlogo.jpg">
+    <h2>회원관리시스템</h2>
+</div>
+<div class="login-area">
+    <div id="login-box">
+    <form name="form1" method="post">
+        <div class="mb-3">
+            <label for="loginid">
+                <input type="text" class="form-control form-control-lg" id="loginid" name="loginid" placeholder="를 입력하시오.">
+                <span class="ip-label">아이디</span>
+            </label>
+        </div>
+        <div class="mb-3">
+            <label for="passwd">
+                <input type="password" class="form-control form-control-lg" id="passwd" name="passwd" placeholder="을 입력하시오.">
+                <span class="ip-label">비번</span>
+            </label>
+        </div>
+        <div class="btn-area">
+            <!--디자인 때문에 a를 많이 씀-->
+            <button type="submit" class="btn btn-lg btn-light" style="width:273px;">로그인</button>
+            <button type="button" onclick="findPassword();" class="btn btn-lg btn-light" style="width:273px;">비번찾기</button>
+        </div>
+    </form>
+    {{form_script}}
+    </div>
+</div>
+<script>
+    function findPassword() {
+        location.replace("find.jsp");
+    }
+    $(function() {
+        $('input').focus(function() {
+            $(this).parent().find(".ip-label").addClass("focus");
+        })
+        $('input').blur(function() {
+            if($(this).val() === "") {
+                $(this).parent().find(".ip-label").removeClass("focus");
+            }
+        })
+        setTimeout(function() {
+            if($('#loginid').val() !== "") {
+                $('#loginid').parent().find(".ip-label").addClass("focus");
+            }
+        }, 100)
+    })
+</script>
