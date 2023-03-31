@@ -2,3 +2,27 @@
 {Malgn.strToDate(1)} source: (source is blank or null)
 [2023-03-31 08:16:50] at /myweb/login.jsp
 {Malgn.diffDate} type:I, sdate:, edate:20230331081650 (date is blank or null)
+[2023-03-31 08:39:00] at /myweb/find.jsp
+{Malgn.mail} mail:, subject:[숙제] 인증 메일입니다. (Illegal address)
+[2023-03-31 15:25:41] at /myweb/find.jsp
+{DB.execute} UPDATE TB_USER SET password=? WHERE id =  => You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+{password=9e87c61d138d732624c8fcb83dae2dbe0a723f0b2d1650d63d4a489f9045a1c1} (You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1)
+[2023-03-31 15:28:09] at /myweb/find.jsp
+{DB.execute} UPDATE TB_USER SET password=? WHERE id =  => You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+{password=9e87c61d138d732624c8fcb83dae2dbe0a723f0b2d1650d63d4a489f9045a1c1} (You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1)
+[2023-03-31 15:29:20] at /myweb/login.jsp
+{Malgn.strToDate(1)} source: (source is blank or null)
+[2023-03-31 15:29:20] at /myweb/login.jsp
+{Malgn.diffDate} type:I, sdate:, edate:20230331152920 (date is blank or null)
+[2023-03-31 15:39:50] at /myweb/login.jsp
+{Malgn.strToDate(1)} source: (source is blank or null)
+[2023-03-31 15:39:50] at /myweb/login.jsp
+{Malgn.diffDate} type:I, sdate:, edate:20230331153950 (date is blank or null)
+[2023-03-31 15:40:24] at /myweb/login.jsp
+{Malgn.strToDate(1)} source: (source is blank or null)
+[2023-03-31 15:40:24] at /myweb/login.jsp
+{Malgn.diffDate} type:I, sdate:, edate:20230331154024 (date is blank or null)
+[2023-03-31 15:51:31] at /myweb/login.jsp
+{Malgn.strToDate(1)} source: (source is blank or null)
+[2023-03-31 15:51:31] at /myweb/login.jsp
+{Malgn.diffDate} type:I, sdate:, edate:20230331155131 (date is blank or null)

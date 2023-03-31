@@ -43,17 +43,32 @@ public class _setting__jsp extends com.caucho.jsp.JavaPage
 
     Auth auth = new Auth(request, response);
     String userId = null;
+    String userSessionId = null;
+    SessionDao mSession = new SessionDao(request, response);
     if(auth.isValid()) {
         userId = auth.getString("USER_ID");
+        userSessionId = auth.getString("SESSIONID");
     }
+//    mSession.put("id", userSessionId);
+//    mSession.save();
+
+    //IP \ucc28\ub2e8
+    String[] allowedIpList = {"127.0.0.1", "125.129.123.211"};
+    String userIp = request.getRemoteAddr();
+    boolean allowed = false;
+//    if(!Site.checkIP(userIp, siteinfo.s("allowed_ip_list"))) m.redirect("/"); return;
+    for(String s : allowedIpList) {
+        if(userIp.equals(s)) allowed = true;
+    }
+    if(!allowed) {m.redirect("/"); return;}
 
     Page p = new Page();
     p.setRequest(request);
     p.setWriter(out);
     p.setPageContext(pageContext);
 
-    p.setVar("sysToday", Malgn.time("yyyyMMdd"));
-    p.setVar("sysNow", Malgn.time("yyyyMMddHHmmss"));
+    String sysToday = Malgn.time("yyyyMMdd");
+    String sysNow = Malgn.time("yyyyMMddHHmmss");
 
 
       
@@ -137,7 +152,7 @@ public class _setting__jsp extends com.caucho.jsp.JavaPage
     com.caucho.vfs.Depend depend;
     depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/setting.jsp"), -865653746331974458L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), -3584774548780267487L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), 5129796956540376339L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
   }
 
