@@ -25,8 +25,8 @@
             else {
                 int failCnt = info.i("fail_cnt") + 1;
                 if(failCnt > 5) {
-//                    mSession.put("blocked_time", sysNow);
-//                    mSession.save();
+                    mSession.put("blocked_time", sysNow);
+                    mSession.save();
                     user.item("status", 2);
                     msg = "회원 상태 변경 실패";
                 }
@@ -51,6 +51,8 @@
             auth.put("user_id", info.i("id"));
             auth.put("user_type", info.s("type"));
             auth.save();
+            user.item("fail_cnt", 0);
+            user.item("status", 1);
             m.jsAlert(info.s("user_nm") + "님 환영합니다!!");
             m.redirect("index.jsp");
             return;

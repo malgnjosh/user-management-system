@@ -1,1 +1,55 @@
-<div class="content">userlist</div>
+<div class="content page bg">
+    <h3 class="p_title">회원목록</h3>
+    <form name="form1" method="get">
+    <div class="search_box">
+        <select name="s_field" id="s_field">
+            <option value="a.login_id">아이디</option>
+            <option value="a.user_nm">이름</option>
+            <option value="a.mobile">전화번호</option>
+        </select>
+        <input type="text" name="s_keyword" id="s_keyword">
+        <input type="button" value="검색">
+    </div>
+    </form>
+
+    <div class="list_box">
+        <div class="btn_group">
+            <a href="user_insert.jsp" class="btn btn_red">회원등록</a>
+        </div>
+        <table>
+            <colgroup>
+                <col style="width:50px;">
+                <col style="width:100px;">
+                <col style="width:150px;">
+                <col>
+                <col>
+            </colgroup>
+            <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">아이디</th>
+                <th scope="col">이름</th>
+                <th scope="col">전화번호</th>
+                <th scope="col">비고</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--@loop(list)-->
+            <tr>
+                <td>{{list.__ord}}</td>
+                <td>{{list.login_id}}</td>
+                <td>
+                    {{list.user_nm}}
+                    <!--@if(list.type:A)-->
+                    <span class="label-red">관리자</span>
+                    <!--/if(list.type:A)-->
+                </td>
+                <td>{{list.mobile}}</td>
+                <td>-</td>
+            </tr>
+            <!--/loop(list)-->
+            </tbody>
+        </table>
+    </div>
+    {{pagebar}}
+</div>

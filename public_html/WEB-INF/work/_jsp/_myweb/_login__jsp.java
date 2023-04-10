@@ -53,12 +53,14 @@ public class _login__jsp extends com.caucho.jsp.JavaPage
 //    mSession.save();
 
     //IP \ucc28\ub2e8
-    String[] allowedIpList = {"127.0.0.1", "125.129.123.211"};
+    String[] allowedIpList = {"127.0.0.1", "125.129.123.211", "106.244.224.183", "52.79.184.225"};
     String userIp = request.getRemoteAddr();
     boolean allowed = false;
-//    if(!Site.checkIP(userIp, siteinfo.s("allowed_ip_list"))) m.redirect("/"); return;
     for(String s : allowedIpList) {
-        if(userIp.equals(s)) allowed = true;
+        if(userIp.equals(s)) {
+            allowed = true;
+//            break;
+        }
     }
     if(!allowed) {m.redirect("/"); return;}
 
@@ -98,8 +100,8 @@ public class _login__jsp extends com.caucho.jsp.JavaPage
             else {
                 int failCnt = info.i("fail_cnt") + 1;
                 if(failCnt > 5) {
-//                    mSession.put("blocked_time", sysNow);
-//                    mSession.save();
+                    mSession.put("blocked_time", sysNow);
+                    mSession.save();
                     user.item("status", 2);
                     msg = "\ud68c\uc6d0 \uc0c1\ud0dc \ubcc0\uacbd \uc2e4\ud328";
                 }
@@ -124,6 +126,8 @@ public class _login__jsp extends com.caucho.jsp.JavaPage
             auth.put("user_id", info.i("id"));
             auth.put("user_type", info.s("type"));
             auth.save();
+            user.item("fail_cnt", 0);
+            user.item("status", 1);
             m.jsAlert(info.s("user_nm") + "\ub2d8 \ud658\uc601\ud569\ub2c8\ub2e4!!");
             m.redirect("index.jsp");
             return;
@@ -211,9 +215,9 @@ public class _login__jsp extends com.caucho.jsp.JavaPage
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/login.jsp"), -8254879931305998787L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/login.jsp"), -1800448996957115080L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), 5129796956540376339L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), -281979814804795023L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
   }
 }

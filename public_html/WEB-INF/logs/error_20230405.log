@@ -1,0 +1,27 @@
+[2023-04-05 10:03:58] at /myweb/login.jsp
+{Malgn.strToDate(1)} source: (source is blank or null)
+[2023-04-05 10:03:58] at /myweb/login.jsp
+{Malgn.diffDate} type:I, sdate:, edate:20230405100358 (date is blank or null)
+[2023-04-05 10:04:08] at /myweb/login.jsp
+{Malgn.strToDate(1)} source: (source is blank or null)
+[2023-04-05 10:04:08] at /myweb/login.jsp
+{Malgn.diffDate} type:I, sdate:, edate:20230405100408 (date is blank or null)
+[2023-04-05 14:07:08] {Template.readFile} path:/home/jsl/public_html/myweb/html/temp/'index'.html
+[2023-04-05 14:14:06] {Template.readFile} path:/home/jsl/public_html/myweb/html/temp/'index'.html
+[2023-04-05 15:32:23] at /myweb/login.jsp
+{Malgn.strToDate(1)} source: (source is blank or null)
+[2023-04-05 15:32:23] at /myweb/login.jsp
+{Malgn.diffDate} type:I, sdate:, edate:20230405153223 (date is blank or null)
+[2023-04-05 15:36:24] at /myweb/login.jsp
+{Malgn.strToDate(1)} source: (source is blank or null)
+[2023-04-05 15:36:24] at /myweb/login.jsp
+{Malgn.diffDate} type:I, sdate:, edate:20230405153624 (date is blank or null)
+[2023-04-05 15:36:28] at /myweb/login.jsp
+{Malgn.strToDate(1)} source: (source is blank or null)
+[2023-04-05 15:36:28] at /myweb/login.jsp
+{Malgn.diffDate} type:I, sdate:, edate:20230405153628 (date is blank or null)
+[2023-04-05 15:37:13] at /myweb/login.jsp
+{Malgn.strToDate(1)} source: (source is blank or null)
+[2023-04-05 15:37:13] at /myweb/login.jsp
+{Malgn.diffDate} type:I, sdate:, edate:20230405153713 (date is blank or null)
+[2023-04-05 15:57:26] {Template.readFile} path:/home/jsl/public_html/myweb/html/main/user_insert.html

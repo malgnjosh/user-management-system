@@ -38,6 +38,8 @@
     //변경
     else if("change".equals(m.rs("mode"))) {
         user.item("password", Malgn.encrypt(f.get("new_pw"), "sha-256"));
+        user.item("fail_cnt", 0);
+        user.item("status", 1);
         if(!user.update("id = '" + m.getSession("USER_ID") + "'")) {
             m.jsAlert("비밀번호 변경 중 오류가 발생했습니다.");
             authBlock = true;

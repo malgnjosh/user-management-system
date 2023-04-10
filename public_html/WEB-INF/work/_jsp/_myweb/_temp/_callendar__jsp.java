@@ -43,26 +43,37 @@ public class _callendar__jsp extends com.caucho.jsp.JavaPage
 
     Auth auth = new Auth(request, response);
     String userId = null;
+    String userSessionId = null;
     SessionDao mSession = new SessionDao(request, response);
     if(auth.isValid()) {
         userId = auth.getString("USER_ID");
-//        userSessionId = auth.getString("SESSIONID");
+        userSessionId = auth.getString("SESSIONID");
     }
 //    mSession.put("id", userSessionId);
 //    mSession.save();
+
+    //IP \ucc28\ub2e8
+    String[] allowedIpList = {"127.0.0.1", "125.129.123.211"};
+    String userIp = request.getRemoteAddr();
+    boolean allowed = false;
+//    if(!Site.checkIP(userIp, siteinfo.s("allowed_ip_list"))) m.redirect("/"); return;
+    for(String s : allowedIpList) {
+        if(userIp.equals(s)) allowed = true;
+    }
+    if(!allowed) {m.redirect("/"); return;}
 
     Page p = new Page();
     p.setRequest(request);
     p.setWriter(out);
     p.setPageContext(pageContext);
 
-    p.setVar("sysToday", Malgn.time("yyyyMMdd"));
-    p.setVar("sysNow", Malgn.time("yyyyMMddHHmmss"));
+    String sysToday = Malgn.time("yyyyMMdd");
+    String sysNow = Malgn.time("yyyyMMddHHmmss");
 
 
       
 
-    p.setBody("temp.callendar");
+    p.setBody("temp.index");
     p.display();
 
     } catch (java.lang.Throwable _jsp_e) {
@@ -138,9 +149,9 @@ public class _callendar__jsp extends com.caucho.jsp.JavaPage
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/temp/callendar.jsp"), -1892956388474484432L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/temp/callendar.jsp"), 6737449748594218867L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), -7604402982368077175L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), 5129796956540376339L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
   }
 }

@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {box-sizing: border-box;}
+        a {text-decoration: none; color: inherit;}
+        .page {padding:20px;}
+        .page .p_title {font-size:24px; color: #000; font-weight: bold; position:sticky; top:0; background-color: #fff;}
+        .page .search_box { padding: 20px; text-align:right;}
+        .page .search_box select {width:100px; height:40px; border:1px solid #777;}
+        .page .search_box input[type=text] {width:200px; height:40px; border:1px solid #777; margin-left:8px;}
+        /*inline 요소는 스페이스 한 칸을 먹으므로 font-size:0을 준다*/
+        .page .search_box input[type=button] {width:40px; height:40px; border:1px solid #777;}
+
+        .page .list_box {margin-top:50px;}
+        .page .list_box table {width:100%; border-top:2px solid #e02e33;}
+        .page .list_box table th {  height: 60px; font-size: 20px; position:sticky; top:30px;}
+        .page .list_box table th {border-bottom:1px solid #777; height: 60px; font-size: 18px; text-align:center; background-color: #fff;}
+
+        .pagenation {display:block;text-align:center;}
+        .pagenation a {display:inline-block;border:1px solid #777; text-align:center;width:30px;height:30px;line-height:28px;}
+        .pagenation a+a {margin-left:8px;}
+        .page .btn {text-align:right; margin-bottom: 50px;}
+        .page .btn_join {background-color: red;color:#fff;font-size:15px;padding:5px 10px; margin: 20px;}
+    </style>
+</head>
+<body>
+
+    <div class="content page">
+        <h3 class="p_title">회원목록</h3>
+        <div class="search_box">
+            <select name="" id="">
+                <option value="">이름</option>
+                <option value="">번호</option>
+                <option value="">주소</option>
+            </select>
+            <input type="text" name="" id="">
+            <input type="button" value="검색">
+        </div>
+
+        <div class="list_box">
+            <div class="btn">
+                <a href="#" class="btn_join">회원등록</a>
+            </div>
+            <table>
+
+                <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">아이디</th>
+                    <th scope="col">이름</th>
+                    <th scope="col">전화번호</th>
+                    <th scope="col">비고</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>malgn</td>
+                    <td>맑은</td>
+                    <td>010-1234-1233</td>
+                    <td>-</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pagenation">
+            <a href="#">&lt;</a>
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">&gt;</a>
+        </div>
+
+    </div>
+</body>
+</html>
+
+
+
