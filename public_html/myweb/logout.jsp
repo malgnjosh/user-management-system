@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %><%@ include file="init.jsp"%><%
 
-//    mSession.delSession();
     auth.delAuthInfo();
+    session.invalidate();
     m.redirect("login.jsp");
 %>

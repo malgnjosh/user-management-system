@@ -6,15 +6,13 @@
     f.setRequest(request);
 
     Auth auth = new Auth(request, response);
-    String userId = null;
+    int userId = 0;
     String userSessionId = null;
-    SessionDao mSession = new SessionDao(request, response);
+
     if(auth.isValid()) {
-        userId = auth.getString("USER_ID");
+        userId = auth.getInt("USER_ID");
         userSessionId = auth.getString("SESSIONID");
     }
-//    mSession.put("id", userSessionId);
-//    mSession.save();
 
     //IP 차단
     String[] allowedIpList = {"127.0.0.1", "125.129.123.211", "106.244.224.183", "52.79.184.225"};

@@ -42,15 +42,13 @@ public class _logout__jsp extends com.caucho.jsp.JavaPage
     f.setRequest(request);
 
     Auth auth = new Auth(request, response);
-    String userId = null;
+    int userId = 0;
     String userSessionId = null;
-    SessionDao mSession = new SessionDao(request, response);
+
     if(auth.isValid()) {
-        userId = auth.getString("USER_ID");
+        userId = auth.getInt("USER_ID");
         userSessionId = auth.getString("SESSIONID");
     }
-//    mSession.put("id", userSessionId);
-//    mSession.save();
 
     //IP \ucc28\ub2e8
     String[] allowedIpList = {"127.0.0.1", "125.129.123.211", "106.244.224.183", "52.79.184.225"};
@@ -75,8 +73,8 @@ public class _logout__jsp extends com.caucho.jsp.JavaPage
 
       
 
-//    mSession.delSession();
     auth.delAuthInfo();
+    session.invalidate();
     m.redirect("login.jsp");
 
       out.write(_jsp_string0, 0, _jsp_string0.length);
@@ -153,9 +151,9 @@ public class _logout__jsp extends com.caucho.jsp.JavaPage
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/logout.jsp"), -774613885833419197L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/logout.jsp"), 7595941307689925319L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), -281979814804795023L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), -8537777119148297730L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
   }
 

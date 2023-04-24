@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %><%@ include file="init.jsp"%><%
 
     //로그인
-    if(null == userId || "null".equals(userId)) {
+    if(0 == userId) {
         m.redirect("login.jsp");
         return;
     }

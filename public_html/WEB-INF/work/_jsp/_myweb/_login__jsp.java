@@ -42,15 +42,13 @@ public class _login__jsp extends com.caucho.jsp.JavaPage
     f.setRequest(request);
 
     Auth auth = new Auth(request, response);
-    String userId = null;
+    int userId = 0;
     String userSessionId = null;
-    SessionDao mSession = new SessionDao(request, response);
+
     if(auth.isValid()) {
-        userId = auth.getString("USER_ID");
+        userId = auth.getInt("USER_ID");
         userSessionId = auth.getString("SESSIONID");
     }
-//    mSession.put("id", userSessionId);
-//    mSession.save();
 
     //IP \ucc28\ub2e8
     String[] allowedIpList = {"127.0.0.1", "125.129.123.211", "106.244.224.183", "52.79.184.225"};
@@ -76,7 +74,7 @@ public class _login__jsp extends com.caucho.jsp.JavaPage
       
 
     //\ub85c\uadf8\uc778
-    if(null != userId && !"null".equals(userId)) {
+    if(0 != userId) {
         m.redirect("index.jsp");
         return;
     }
@@ -89,50 +87,41 @@ public class _login__jsp extends com.caucho.jsp.JavaPage
     f.addElement("loginid", null, null);
     f.addElement("passwd", null, null);
 
-    String msg = "";
     //\uc218\uc815
     if(m.isPost() && f.validate()) {
-        DataSet info = user.find("login_id = '" + f.get("loginid") + "' AND password = '" + Malgn.encrypt(f.get("passwd"), "sha-256") + "' AND type = 'A'");
-
-        if(!info.next()) { //\ube44\ubc00\ubc88\ud638 \ud2c0\ub9bc
-            info = user.find("login_id = '" + f.get("loginid") + "' AND type = 'A'");
-            if(!info.next()) {} //\uc874\uc7ac\ud558\uc9c0 \uc54a\ub294 \uc544\uc774\ub514
-            else {
-                int failCnt = info.i("fail_cnt") + 1;
-                if(failCnt > 5) {
-                    mSession.put("blocked_time", sysNow);
-                    mSession.save();
-                    user.item("status", 2);
-                    msg = "\ud68c\uc6d0 \uc0c1\ud0dc \ubcc0\uacbd \uc2e4\ud328";
-                }
-                else {
-                    user.item("fail_cnt", failCnt);
-                    msg = "\uc2e4\ud328 \ud69f\uc218 \uc124\uc815 \uc2e4\ud328";
-                }
-            }
+        DataSet info = user.find("login_id = ? AND type = 'A' AND status = 1", new Object[]{f.get("loginid")});
+        if (!info.next()) {
             m.jsError("\uc544\uc774\ub514/\ube44\ubc00\ubc88\ud638\ub97c \ud655\uc778\ud574\uc8fc\uc138\uc694.");
-        } else {
-            //\uc81c\ud55c - 5\ud68c
-            if(5 > Malgn.diffDate("I", mSession.get("blocked_time"), sysNow) && 2 == info.i("status")) {
-                m.jsAlert("\ube44\ubc00\ubc88\ud638 \uc785\ub825 \ud69f\uc218 \ucd08\uacfc\ub85c 5\ubd84\uac04 \ub85c\uadf8\uc778\uc774 \ucc28\ub2e8\ub429\ub2c8\ub2e4.");
-                return;
-            } else {
-                mSession.put("blocked_time", "");
-            }
-
-//            user.item("access_token", m.md5(m.getUniqId()));
-//            msg = "Access token \ubc1c\uae09 \uc2e4\ud328";
-
-            auth.put("user_id", info.i("id"));
-            auth.put("user_type", info.s("type"));
-            auth.save();
-            user.item("fail_cnt", 0);
-            user.item("status", 1);
-            m.jsAlert(info.s("user_nm") + "\ub2d8 \ud658\uc601\ud569\ub2c8\ub2e4!!");
-            m.redirect("index.jsp");
             return;
         }
-        if(!"".equals(msg) && !user.update("id = " + info.s("id"))) { m.jsAlert(msg); return; };
+        int failCnt = info.i("fail_cnt") + 1;
+        if(5 < failCnt) {
+            if(null == session.getAttribute("BLOCKED_TIME")) session.setAttribute("BLOCKED_TIME", sysNow);
+            if(5 > Malgn.diffDate("I", session.getAttribute("BLOCKED_TIME").toString(), sysNow)) {
+                m.jsError("\ube44\ubc00\ubc88\ud638 \uc785\ub825 \ud69f\uc218 \ucd08\uacfc\ub85c 5\ubd84\uac04 \ub85c\uadf8\uc778\uc774 \ucc28\ub2e8\ub429\ub2c8\ub2e4.");
+                return;
+            } else {
+                session.setAttribute("BLOCKED_TIME", "");
+                user.item("fail_cnt", 0);
+                if(!user.update("id = " + info.s("id"))) {m.jsError("\ud68c\uc6d0\uc815\ubcf4 \uac31\uc2e0\uc911 \uc624\ub958\uac00 \ubc1c\uc0dd\ud558\uc600\uc2b5\ub2c8\ub2e4.");return;
+                }
+            }
+        }
+
+        String inputPw = Malgn.encrypt(f.get("passwd"), "sha-256");
+        if (!inputPw.equals(info.s("password"))) {
+            user.item("fail_cnt", failCnt);
+            if(!user.update("id = " + info.s("id"))) {m.jsError("\ud68c\uc6d0\uc815\ubcf4 \uac31\uc2e0\uc911 \uc624\ub958\uac00 \ubc1c\uc0dd\ud558\uc600\uc2b5\ub2c8\ub2e4."); return;}
+            m.jsError("\uc544\uc774\ub514/\ube44\ubc00\ubc88\ud638\ub97c \ud655\uc778\ud574\uc8fc\uc138\uc694.");
+            return;
+        }
+
+        auth.put("USER_ID", info.i("id"));
+        auth.put("USER_TYPE", info.s("type"));
+        auth.save();
+
+        m.jsAlert(info.s("user_nm") + "\ub2d8 \ud658\uc601\ud569\ub2c8\ub2e4!!");
+        m.jsReplace("index.jsp");
         return;
     }
 
@@ -215,9 +204,9 @@ public class _login__jsp extends com.caucho.jsp.JavaPage
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/login.jsp"), -1800448996957115080L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/login.jsp"), -2875432766640405985L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), -281979814804795023L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), -8537777119148297730L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
   }
 }

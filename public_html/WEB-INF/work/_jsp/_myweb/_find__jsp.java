@@ -42,23 +42,23 @@ public class _find__jsp extends com.caucho.jsp.JavaPage
     f.setRequest(request);
 
     Auth auth = new Auth(request, response);
-    String userId = null;
+    int userId = 0;
     String userSessionId = null;
-    SessionDao mSession = new SessionDao(request, response);
+
     if(auth.isValid()) {
-        userId = auth.getString("USER_ID");
+        userId = auth.getInt("USER_ID");
         userSessionId = auth.getString("SESSIONID");
     }
-//    mSession.put("id", userSessionId);
-//    mSession.save();
 
     //IP \ucc28\ub2e8
-    String[] allowedIpList = {"127.0.0.1", "125.129.123.211"};
+    String[] allowedIpList = {"127.0.0.1", "125.129.123.211", "106.244.224.183", "52.79.184.225"};
     String userIp = request.getRemoteAddr();
     boolean allowed = false;
-//    if(!Site.checkIP(userIp, siteinfo.s("allowed_ip_list"))) m.redirect("/"); return;
     for(String s : allowedIpList) {
-        if(userIp.equals(s)) allowed = true;
+        if(userIp.equals(s)) {
+            allowed = true;
+//            break;
+        }
     }
     if(!allowed) {m.redirect("/"); return;}
 
@@ -205,7 +205,7 @@ public class _find__jsp extends com.caucho.jsp.JavaPage
     com.caucho.vfs.Depend depend;
     depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/find.jsp"), 8790449259997430169L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), 5129796956540376339L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), -8537777119148297730L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
   }
 
