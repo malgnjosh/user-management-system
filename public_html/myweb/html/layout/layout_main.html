@@ -23,16 +23,40 @@
             </div>
             <nav>
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="user_list.jsp">회원관리</a></li>
-                    <li class="list-group-item"><a href="setting.jsp">설정</a></li>
+                    <li>
+                        <a href="javascript:void(0)">회원관리</a>
+                        <ul class="list-group-item">
+                            <li><a href="user_list.jsp">회원관리</a></li>
+                            <li><a href="admin_list.jsp">관리자관리</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">사이트관리</a>
+                        <ul class="list-group-item">
+                            <li><a href="setting.jsp">설정</a></li>
+                        </ul>
+                    </li>
                 </ul>
+
             </nav>
             <div class="btn_area">
                 <button onclick="location.href='logout.jsp'" class="btn btn-info">로그아웃</button>
+                <a style="font-size:10px; margin-top: 50px;" href="https://www.flaticon.com/kr/free-icons/" title="당근 아이콘">당근 아이콘 제작자: Good Ware - Flaticon</a>
             </div>
+
         </header>
         <!--@include(BODY)-->
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<script>
+    $(function() {
+        $('.list-group > li > a').on('click', function(){
+            $(this).toggleClass('on');
+            // $(this).next().slideToggle();
+        })
+    })
+</script>
