@@ -118,7 +118,8 @@ public class _find__jsp extends com.caucho.jsp.JavaPage
             authBlock = true;
         } else {
             m.jsAlert("\ube44\ubc00\ubc88\ud638 \ubcc0\uacbd\uc5d0 \uc131\uacf5\ud588\uc2b5\ub2c8\ub2e4.");
-            m.redirect("login.jsp");
+            m.jsReplace("login.jsp");
+            return;
         }
     }
 
@@ -203,7 +204,7 @@ public class _find__jsp extends com.caucho.jsp.JavaPage
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/find.jsp"), 8790449259997430169L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/find.jsp"), 8831900569584635728L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
     depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), -8537777119148297730L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);

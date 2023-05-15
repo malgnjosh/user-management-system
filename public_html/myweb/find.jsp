@@ -45,7 +45,8 @@
             authBlock = true;
         } else {
             m.jsAlert("비밀번호 변경에 성공했습니다.");
-            m.redirect("login.jsp");
+            m.jsReplace("login.jsp");
+            return;
         }
     }
 
