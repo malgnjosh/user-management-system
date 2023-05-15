@@ -96,6 +96,7 @@ public class _login__jsp extends com.caucho.jsp.JavaPage
             if(null == session.getAttribute("BLOCKED_TIME")) session.setAttribute("BLOCKED_TIME", sysNow); //\ud604\uc7ac \uc2dc\uac04\uc744 \uc800\uc7a5
             if(5 > Malgn.diffDate("I", session.getAttribute("BLOCKED_TIME").toString(), sysNow)) { //5\ubd84 \ub3d9\uc548 \ucc28\ub2e8
                 m.jsError("\ube44\ubc00\ubc88\ud638 \uc785\ub825 \ud69f\uc218 \ucd08\uacfc\ub85c 5\ubd84\uac04 \ub85c\uadf8\uc778\uc774 \ucc28\ub2e8\ub429\ub2c8\ub2e4.");
+                session.setAttribute("FAIL_CNT", "");
                 return;
             } else { //5\ubd84\uc774 \uc9c0\ub098\uba74 \ucd08\uae30\ud654
                 session.setAttribute("BLOCKED_TIME", "");
@@ -110,7 +111,7 @@ public class _login__jsp extends com.caucho.jsp.JavaPage
             m.jsError("\uc544\uc774\ub514/\ube44\ubc00\ubc88\ud638\ub97c \ud655\uc778\ud574\uc8fc\uc138\uc694.");
             return;
         } else if(5 <= info.i("fail_cnt")) {
-            m.jsError("\ube44\ubc00\ubc88\ud638 \uc785\ub825 \ud69f\uc218 \ucd08\uacfc\ub85c \ub85c\uadf8\uc778\uc774 \ucc28\ub2e8\ub41c \uacc4\uc815\uc785\ub2c8\ub2e4.");
+            m.jsError("\ub85c\uadf8\uc778\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4. \uad00\ub9ac\uc790\uc5d0\uac8c \ubb38\uc758\ud574\uc8fc\uc138\uc694.");
             return;
         }
 
@@ -217,7 +218,7 @@ public class _login__jsp extends com.caucho.jsp.JavaPage
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/login.jsp"), -7023419618740591640L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/login.jsp"), 1203455676542478385L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
     depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), -8537777119148297730L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);

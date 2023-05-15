@@ -1,0 +1,19 @@
+SMAP
+_backup__jsp.java
+JSP
+*S JSP
+*F
++ 1 init.jsp
+temp/../myweb/init.jsp
++ 2 backup.jsp
+temp/backup.jsp
+*L
+1#1,37:37
+1#2,4:74
+4#2:78
+15#2:79,2
+18#2:81,2
+20#2,2:83
+21#2:85
+24#2:86
+*E

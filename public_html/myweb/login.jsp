@@ -23,6 +23,7 @@
             if(null == session.getAttribute("BLOCKED_TIME")) session.setAttribute("BLOCKED_TIME", sysNow); //현재 시간을 저장
             if(5 > Malgn.diffDate("I", session.getAttribute("BLOCKED_TIME").toString(), sysNow)) { //5분 동안 차단
                 m.jsError("비밀번호 입력 횟수 초과로 5분간 로그인이 차단됩니다.");
+                session.setAttribute("FAIL_CNT", "");
                 return;
             } else { //5분이 지나면 초기화
                 session.setAttribute("BLOCKED_TIME", "");
@@ -37,7 +38,7 @@
             m.jsError("아이디/비밀번호를 확인해주세요.");
             return;
         } else if(5 <= info.i("fail_cnt")) {
-            m.jsError("비밀번호 입력 횟수 초과로 로그인이 차단된 계정입니다.");
+            m.jsError("로그인할 수 없습니다. 관리자에게 문의해주세요.");
             return;
         }
 
