@@ -1,8 +1,0 @@
-[2023-04-24 16:18:43] at /myweb/login.jsp
-{Malgn.strToDate(1)} source: (source is blank or null)
-[2023-04-24 16:18:43] at /myweb/login.jsp
-{Malgn.diffDate} type:I, sdate:, edate:20230424161843 (date is blank or null)
-[2023-04-24 16:20:16] at /myweb/login.jsp
-{Malgn.strToDate(1)} source: (source is blank or null)
-[2023-04-24 16:20:16] at /myweb/login.jsp
-{Malgn.diffDate} type:I, sdate:, edate:20230424162016 (date is blank or null)
