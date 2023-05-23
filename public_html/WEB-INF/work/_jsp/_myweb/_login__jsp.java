@@ -50,6 +50,8 @@ public class _login__jsp extends com.caucho.jsp.JavaPage
         userSessionId = auth.getString("SESSIONID");
     }
 
+
+
     //IP \ucc28\ub2e8
     String[] allowedIpList = {"127.0.0.1", "125.129.123.211", "106.244.224.183", "52.79.184.225"};
     String userIp = request.getRemoteAddr();
@@ -79,35 +81,47 @@ public class _login__jsp extends com.caucho.jsp.JavaPage
         return;
     }
 
+    int failCnt = m.getSessionInt("FAIL_CNT");
+    String failTime = m.getSession("BLOCKED_TIME");
+
+    if(!"".equals(failTime) && 5 >= m.diffDate("I", failTime, sysNow)) {
+        m.jsError("\ube44\ubc00\ubc88\ud638 \uc785\ub825 \ud69f\uc218 \ucd08\uacfc\ub85c 5\ubd84\uac04 \ub85c\uadf8\uc778\uc774 \ucc28\ub2e8\ub429\ub2c8\ub2e4.");
+        return;
+    } else if(failCnt >= 5){
+        failCnt = 0;
+    }
+
     //\uac1d\uccb4
     UserDao user = new UserDao();
 //    user.setDebug(out);
 
     //\ud3fc\uccb4\ud06c
-    f.addElement("loginid", null, null);
-    f.addElement("passwd", null, null);
+    f.addElement("loginid", null, "required:'Y'");
+    f.addElement("passwd", null, "required:'Y'");
 
     //\uc218\uc815
     if(m.isPost() && f.validate()) {
-        int fail_cnt_temp;
-        if(null == session.getAttribute("FAIL_CNT")) fail_cnt_temp = 0;
-        else fail_cnt_temp = (Integer)session.getAttribute("FAIL_CNT");
-        if(5 <= fail_cnt_temp) { //\uc2e4\ud328\ud69f\uc218\uac00 5 \uc774\uc0c1
-            if(null == session.getAttribute("BLOCKED_TIME")) session.setAttribute("BLOCKED_TIME", sysNow); //\ud604\uc7ac \uc2dc\uac04\uc744 \uc800\uc7a5
-            if(5 > Malgn.diffDate("I", session.getAttribute("BLOCKED_TIME").toString(), sysNow)) { //5\ubd84 \ub3d9\uc548 \ucc28\ub2e8
-                m.jsError("\ube44\ubc00\ubc88\ud638 \uc785\ub825 \ud69f\uc218 \ucd08\uacfc\ub85c 5\ubd84\uac04 \ub85c\uadf8\uc778\uc774 \ucc28\ub2e8\ub429\ub2c8\ub2e4.");
-                session.setAttribute("FAIL_CNT", "");
-                return;
-            } else { //5\ubd84\uc774 \uc9c0\ub098\uba74 \ucd08\uae30\ud654
-                session.setAttribute("BLOCKED_TIME", "");
-                session.setAttribute("FAIL_CNT", "");
-            }
-        }
+//        int fail_cnt_temp;
+//        if(null == session.getAttribute("FAIL_CNT")) fail_cnt_temp = 0;
+//        else fail_cnt_temp = (Integer)session.getAttribute("FAIL_CNT");
+//        if(5 <= fail_cnt_temp) { //\uc2e4\ud328\ud69f\uc218\uac00 5 \uc774\uc0c1
+//            if(null == session.getAttribute("BLOCKED_TIME")) session.setAttribute("BLOCKED_TIME", sysNow); //\ud604\uc7ac \uc2dc\uac04\uc744 \uc800\uc7a5
+//            if(5 > Malgn.diffDate("I", session.getAttribute("BLOCKED_TIME").toString(), sysNow)) { //5\ubd84 \ub3d9\uc548 \ucc28\ub2e8
+//                m.jsError("\ube44\ubc00\ubc88\ud638 \uc785\ub825 \ud69f\uc218 \ucd08\uacfc\ub85c 5\ubd84\uac04 \ub85c\uadf8\uc778\uc774 \ucc28\ub2e8\ub429\ub2c8\ub2e4.");
+//                session.setAttribute("FAIL_CNT", "");
+//                return;
+//            } else { //5\ubd84\uc774 \uc9c0\ub098\uba74 \ucd08\uae30\ud654
+//                session.setAttribute("BLOCKED_TIME", "");
+//                session.setAttribute("FAIL_CNT", "");
+//            }
+//        }
 
         DataSet info = user.find("login_id = ? AND type = 'A' AND status = 1", new Object[]{f.get("loginid")});
         if(!info.next()) {
-            if(0 == fail_cnt_temp) session.setAttribute("FAIL_CNT", 1);
-            else session.setAttribute("FAIL_CNT", fail_cnt_temp + 1);
+//            if(0 == fail_cnt_temp) session.setAttribute("FAIL_CNT", 1);
+//            else session.setAttribute("FAIL_CNT", fail_cnt_temp + 1);
+            m.setSession("FAIL_CNT", ++failCnt);
+            if(failCnt >= 5) m.setSession("BLOCKED_TIME", sysNow);
             m.jsError("\uc544\uc774\ub514/\ube44\ubc00\ubc88\ud638\ub97c \ud655\uc778\ud574\uc8fc\uc138\uc694.");
             return;
         } else if(5 <= info.i("fail_cnt")) {
@@ -124,8 +138,8 @@ public class _login__jsp extends com.caucho.jsp.JavaPage
         }
 
         //\ub85c\uadf8\uc778 \uc131\uacf5
-        session.setAttribute("BLOCKED_TIME", "");
-        session.setAttribute("FAIL_CNT", "");
+        m.setSession("BLOCKED_TIME", "");
+        m.setSession("FAIL_CNT", "");
 
         user.item("fail_cnt", 0);
         if(!user.update("id = " + info.s("id"))) {m.jsError("\ud68c\uc6d0\uc815\ubcf4 \uac31\uc2e0\uc911 \uc624\ub958\uac00 \ubc1c\uc0dd\ud558\uc600\uc2b5\ub2c8\ub2e4.");return;}
@@ -218,9 +232,9 @@ public class _login__jsp extends com.caucho.jsp.JavaPage
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/login.jsp"), 1203455676542478385L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/login.jsp"), 1440405446078124294L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), -8537777119148297730L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), 5651392717002480471L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
   }
 }

@@ -14,6 +14,8 @@
         userSessionId = auth.getString("SESSIONID");
     }
 
+
+
     //IP 차단
     String[] allowedIpList = {"127.0.0.1", "125.129.123.211", "106.244.224.183", "52.79.184.225"};
     String userIp = request.getRemoteAddr();

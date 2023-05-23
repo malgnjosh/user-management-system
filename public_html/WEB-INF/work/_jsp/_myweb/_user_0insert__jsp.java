@@ -50,6 +50,8 @@ public class _user_0insert__jsp extends com.caucho.jsp.JavaPage
         userSessionId = auth.getString("SESSIONID");
     }
 
+    AES aes = new AES("mykey20230515141");
+
     //IP \ucc28\ub2e8
     String[] allowedIpList = {"127.0.0.1", "125.129.123.211", "106.244.224.183", "52.79.184.225"};
     String userIp = request.getRemoteAddr();
@@ -77,6 +79,7 @@ public class _user_0insert__jsp extends com.caucho.jsp.JavaPage
     //\uac1d\uccb4
     UserDao user = new UserDao();
 
+
     //\ud3fc\uccb4\ud06c
     f.addElement("login_id", null, "required:'Y'");
     f.addElement("passwd", null, "required:'Y'");
@@ -90,7 +93,7 @@ public class _user_0insert__jsp extends com.caucho.jsp.JavaPage
          user.item("password", Malgn.encrypt(f.get("passwd"), "sha-256"));
          user.item("user_nm", f.get("user_nm"));
          user.item("email", f.get("email"));
-         user.item("mobile", f.get("mobile"));
+         user.item("mobile", aes.encrypt(f.get("mobile")));
          if("on".equals(f.get("is_admin"))) user.item("type", "A");
          user.item("birth", f.get("birth_date"));
          user.item("reg_date", sysNow);
@@ -179,9 +182,9 @@ public class _user_0insert__jsp extends com.caucho.jsp.JavaPage
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/user_insert.jsp"), -3676300019562075521L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/user_insert.jsp"), -5251059255218596797L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), -8537777119148297730L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), 6507506216776086621L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
   }
 }

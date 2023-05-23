@@ -4,6 +4,7 @@
     //객체
     UserDao user = new UserDao();
 
+
     //폼체크
     f.addElement("login_id", null, "required:'Y'");
     f.addElement("passwd", null, "required:'Y'");
@@ -17,7 +18,7 @@
          user.item("password", Malgn.encrypt(f.get("passwd"), "sha-256"));
          user.item("user_nm", f.get("user_nm"));
          user.item("email", f.get("email"));
-         user.item("mobile", f.get("mobile"));
+         user.item("mobile", aes.encrypt(f.get("mobile")));
          if("on".equals(f.get("is_admin"))) user.item("type", "A");
          user.item("birth", f.get("birth_date"));
          user.item("reg_date", sysNow);

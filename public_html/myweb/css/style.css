@@ -23,8 +23,9 @@ html, body {width:100%;height:100%;}
 header {height:100%;width: 250px; padding: 10px; border-right: 1px groove black;}
 header div.logo {width: 100px; height:50px;}
 header div.logo a img {width:100%; height:100%;}
-header div.btn_area {height:300px; margin-top: 50px; position:absolute; top:70%;}
-header div.btn_area button {position:absolute;top:35%;}
+header div.btn_area {height:300px; margin-top: 50px; position:absolute; top:50%;}
+header div.btn_area button {position: relative; top: 95%; margin:10px;}
+header div.source_area {margin-top: 50px; position:absolute; top:90%;}
 
 header nav {width:200px;}
 header nav .list-group > li:hover {background-color: #5d5dd5;}
@@ -42,7 +43,7 @@ header nav .list-group .list-group-item > li > a::before {content:''; display:bl
 
 .content {width: 100%; padding: 20px; }
 .content_main {height:100%;}
-.content_main .txt {position:absolute;top:10%;left:20%; z-index: 1;}
+.content_main .txt {position:absolute; top:10%; left:24%; z-index: 1;}
 .content_main img {position:absolute; left:50%; width:50%; z-index: 0;}
 
 .content_insert label {margin:20px;}

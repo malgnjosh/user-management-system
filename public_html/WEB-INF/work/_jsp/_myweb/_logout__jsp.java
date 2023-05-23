@@ -50,6 +50,8 @@ public class _logout__jsp extends com.caucho.jsp.JavaPage
         userSessionId = auth.getString("SESSIONID");
     }
 
+
+
     //IP \ucc28\ub2e8
     String[] allowedIpList = {"127.0.0.1", "125.129.123.211", "106.244.224.183", "52.79.184.225"};
     String userIp = request.getRemoteAddr();
@@ -153,7 +155,7 @@ public class _logout__jsp extends com.caucho.jsp.JavaPage
     com.caucho.vfs.Depend depend;
     depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/logout.jsp"), 7595941307689925319L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), -8537777119148297730L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), 5651392717002480471L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
   }
 

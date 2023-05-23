@@ -21,7 +21,9 @@
 
     //포맷팅
     DataSet list = lm.getDataSet();
-
+    while(list.next()) {
+        list.put("mobile_conv", aes.decrypt(list.s("mobile")));
+    }
 
     p.setLayout("main");
     p.setVar("query", m.qs());

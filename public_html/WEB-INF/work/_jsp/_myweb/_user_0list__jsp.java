@@ -50,6 +50,8 @@ public class _user_0list__jsp extends com.caucho.jsp.JavaPage
         userSessionId = auth.getString("SESSIONID");
     }
 
+    AES aes = new AES("mykey20230515141");
+
     //IP \ucc28\ub2e8
     String[] allowedIpList = {"127.0.0.1", "125.129.123.211", "106.244.224.183", "52.79.184.225"};
     String userIp = request.getRemoteAddr();
@@ -85,23 +87,27 @@ public class _user_0list__jsp extends com.caucho.jsp.JavaPage
     //\ubaa9\ub85d
     ListManager lm = new ListManager();
     lm.setRequest(request);
+    lm.setDebug();
+    lm.setListMode(0);
     lm.setListNum(15);
-    lm.setTable(user.table + " a ");
-//    lm.setFields("a.");
-    lm.addWhere("a.status != -1");
+    lm.setTable("TB_USER a LEFT JOIN TB_COURSE_USER b ON a.id = b.user_id");
+    lm.setFields("a.id, a.user_nm, a.mobile");
+    lm.addWhere("status != -1");
 //    lm.addSearch();
-    lm.setOrderBy("a.id DESC");
+    lm.setOrderBy("id DESC");
 
     //\ud3ec\ub9f7\ud305
     DataSet list = lm.getDataSet();
-
+    while(list.next()) {
+        list.put("mobile_conv", aes.decrypt(list.s("mobile")));
+    }
 
     p.setLayout("main");
     p.setVar("query", m.qs());
     p.setBody("main.user_list");
 
     p.setLoop("list", list);
-    p.setVar("pagebar", lm.getPaging());
+//    p.setVar("pagebar", lm.getPaging());
 
     p.display();
 
@@ -178,9 +184,9 @@ public class _user_0list__jsp extends com.caucho.jsp.JavaPage
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/user_list.jsp"), -3455745636752434030L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/user_list.jsp"), 2712300508671513328L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
-    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), -8537777119148297730L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("myweb/init.jsp"), 6507506216776086621L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
   }
 }
